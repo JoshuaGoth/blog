@@ -1,7 +1,7 @@
 ---
 title: Notes
 type: docs
-description: Yet another digital garden that using docs layout.
+description: Misc Notes to be Published Here.
 menu:
   main:
     weight: 1
