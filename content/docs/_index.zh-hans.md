@@ -1,10 +1,11 @@
 ---
-title: 示例文档
+title: 文档
+description: 文档布局示例。
 menu:
   main:
     weight: 1
     params:
-      icon: '<i class="fas fa-fw fa-file"></i>'
+      icon:
+        vendor: bs
+        name: book
 ---
-
-The example of Docs layout.
