@@ -1,6 +1,6 @@
 ---
 title: "Why True AI is a Bad Idea"
-date: 2023-11-26T16:36:24+08:00
+date: 2025-10-10
 draft: false
 description: "Why True Artificial Intelligence is a Bad Idea."
 noindex: false
@@ -8,12 +8,13 @@ featured: true
 pinned: false
 # comments: false
 series:
- - Blog
+
 categories:
  - Technology
 tags:
  - AI
  - Tech
+ - Bad Idea
 images:
   - bad_idea.png
 authors:
