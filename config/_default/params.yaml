@@ -103,7 +103,8 @@ hb:
       service: github # github or gitlab.
       repo: JoshuaGoth/blog
       branch: main
-      subpath: exampleSite
+      subpath: blog
+      thumbnail_size: "x640"
   # gallery:
   #   thumbnail_size: "x640"
   # google_fonts:
@@ -144,7 +145,7 @@ hugopress:
         body-end:
           cacheable: true
         # see layouts/partials/hugopress/modules/hb-custom/hooks/hb-blog-sidebar.html.
-        hb-blog-sidebar:
+        #hb-blog-sidebar:
           cacheable: true
           weight: 4
     # change the order of sidebar modules.

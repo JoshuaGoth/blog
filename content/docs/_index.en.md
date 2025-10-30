@@ -1,6 +1,6 @@
 ---
 title: Docs
-description: The example of docs layout.
+description: Documents, Guides, How-To's and Walkthroughs will be placed here. 
 menu:
   main:
     weight: 1
@@ -9,3 +9,4 @@ menu:
         vendor: bs
         name: book
 ---
+

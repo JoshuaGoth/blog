@@ -1,5 +1,5 @@
 ---
-title: "Wehn Artifical Intelligence is No Longer Artifical"
+title: "When Artifical Intelligence is No Longer Artifical"
 date: 2025-10-06
 draft: false
 description: "When Does Artifical Intelligence Become Plain Old Intelligence"
