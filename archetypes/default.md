@@ -6,7 +6,7 @@ description: "{{ replace .Name "-" " " | title }}"
 noindex: false
 featured: false
 pinned: false
-# comments: false
+# comments: true
 series:
 #  - 
 categories:
@@ -14,7 +14,7 @@ categories:
 tags:
 #  - 
 images:
-#  - 
+ - 
 # menu:
 #   main:
 #     weight: 100
@@ -23,6 +23,7 @@ images:
 #         vendor: bs
 #         name: book
 #         color: '#e24d0e'
+alt_text: "{{ replace .Name "-" " " | title }}"
 ---
 
 Content.
