@@ -1,82 +1,43 @@
 main:
-  - identifier: blog
-    name: Blog
-    weight: 4
-    params:
-      icon:
-        vendor: fas
-        name: blog
 
-  - name: Support
-    identifier: support
-    weight: 100
-    url: https://github.com/hbstack
+  - identifier: menu
+    name: Menu
     params:
-      header: The HB support community.
+      header: Navigation Menu
       icon:
-        vendor: font-awesome-solid
-        name: headset
+        name: list
+        vendor: bootstrap
+        weight: 5
 
-  - name: Documentation
-    parent: support
-    url: https://hbstack.dev/
-    weight: 1
+  - name: Home
     params:
+      description: The Objective Perspective
       icon:
-        vendor: bs
-        name: book
-        className: text-primary
-      description: The documentation.
+        color: blue
+        name: house-fill
+        vendor: bootstrap
+    parent: menu
+    url: /
+    weight: 6
 
-  - name: GitHub
-    parent: support
-    url: https://github.com/hbstack
-    weight: 11
+  - name: About
     params:
+      description: About Joshua
       icon:
-        vendor: fab
-        name: github
-      description: The code repository.
-
-  - name: Discussion
-    parent: support
-    url: https://github.com/orgs/hbstack/discussions
-    weight: 12
-    params:
-      icon:
-        vendor: font-awesome-regular
-        name: comments
         color: green
-      description: Ask questions and share your ideas.
+        name: person-fill
+        vendor: bootstrap
+    parent: menu
+    url: /about/
+    weight: 7
 
-  - name: Bug Report
-    parent: support
-    url: https://github.com/orgs/hbstack/discussions/new?category=issues-and-bugs
-    weight: 13
+  - name: Contact
     params:
+      description: Reach Out
       icon:
-        vendor: font-awesome-solid
-        name: bug
-        color: red
-      description: Tell us about a bug or issue.
-
-  - name: Feature Request
-    parent: support
-    url: https://github.com/orgs/hbstack/discussions/new?category=ideas
-    weight: 14
-    params:
-      icon:
-        vendor: font-awesome-regular
-        name: lightbulb
         color: orange
-      description: Suggest new or updated features.
-  
-  - name: Mastodon
-    parent: support
-    url: https://techhub.social/@hbstack
-    weight: 16
-    params:
-      icon:
-        vendor: simple
-        name: mastodon
-      description: Follow us on Mastodon to get latest updates.
+        name: envelope-fill
+        vendor: bootstrap
+    parent: menu
+    url: /contact/
+    weight: 8

@@ -6,6 +6,8 @@
 imports:
   - path: github.com/hbstack/theme-cards
 
+  - path: github.com/hugomods/gravatar
+
   # see https://hbstack.dev/modules/look-and-feel/google-fonts/.
   - path: github.com/hbstack/google-fonts
 
