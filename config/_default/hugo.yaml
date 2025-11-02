@@ -42,6 +42,10 @@ markup:
     lineNos: true
     lineNumbersInTable: false
 
+    caches:
+  images:
+    dir: :cacheDir/images
+
 # see https://gohugo.io/content-management/related/#configure-related-content
 related:
   includeNewer: true
