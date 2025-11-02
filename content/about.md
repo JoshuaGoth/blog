@@ -4,8 +4,8 @@ date: 2025-10-31T20:59:56-07:00
 draft: false
 description: "About the Author, Joshua Goth"
 noindex: false
-featured: false
-pinned: false
+featured: true
+pinned: true
 # comments: false
 series:
 #  - 
