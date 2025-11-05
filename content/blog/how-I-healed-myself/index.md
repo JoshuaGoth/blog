@@ -62,7 +62,7 @@ This breathing method is taken directly from [Dr. Joe Dispenza's book *Becoming 
 >
 > -- <cite>Dr. Joe Dispenza, *Becoming Supernatural*</cite>
 
-Basically, in this exercise, you are taking a deep breath, and forcing it through your body, starting with your perineum and exhaling out of your Crown Chakra, and to your Ka**My Body's Secret: The Unlikely Technique That Healed What Doctors Couldn't.**. Perform this twice in a row. 
+Basically, in this exercise, you are taking a deep breath, and forcing it through your body, starting with your perineum and exhaling out of your Crown Chakra, and to your Ka. Perform this twice in a row. 
 
 
 ### The Human body is Energy. We can Learn How to Manipulate The Energy Going Through and Around Us in Order to Benefit Ourselves.
