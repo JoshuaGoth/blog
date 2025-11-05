@@ -43,12 +43,12 @@ If you are a Windows user, then you know, as well as I do, that you can't leave 
 
 ### Viruses, Malware, & Tracking...Oh My!
 
-The features we have now are what used to be called spyware, back in the early days of computing. Now, sold to us as features in order to help our every day lives. More reason why I trust the system less and less with each passing day. Having windows means having a good anti-virus program, anti-malware program, browser addon for security, daily background scans...fear. We all live in fear while using windows. Every one of us is terrified that we will lose our data, our bank accounts, our entire lives. It is no longer a matter of *if*, but instead *when* it will happen to us. 
+The features we have now are what used to be called spyware, back in the early days of computing. Now, sold to us as features in order to help our every day lives. More reason why I trust the system less and less with each passing day. Having Windows means having a good anti-virus program, anti-malware program, browser addon for security, daily background scans...fear. We all live in fear while using Windows. Every one of us is terrified that we will lose our data, our bank accounts, our entire lives. It is no longer a matter of *if*, but instead *when* it will happen to us. 
 
 I spent my career locking out the *bad-actors*. Bigger firewalls, stronger software, I could go on... but in the end, every action taken in every company that I worked for, was built out of fear. The one thing I learned throughout my career was no matter how much work you put into locking your front door, none of that will matter if end-users are not trained on security. 
 
 ### Our Digital Life
-But at the end of the day, what made me turn to Linux full-time—instead of just for work-related duties—was fear. I was afraid. Like many people, I realized that I had kept years of my unpublished work scattered across systems, backup folders, and a multitude of cloud providers. The single thing that every piece of software and online platform shared was a single point of failure: Windows.
+But at the end of the day, what made me turn to Linux full-time—instead of just for work-related duties—was peace of mind. I lived in a state of perpetual worry because of uncertainties that were out of my control.  Like many people, I realized that I had kept years of my unpublished work scattered across systems, backup folders, and a multitude of cloud providers. The single thing that every piece of software and online platform shared was a single point of failure: Windows[^1].
 
 All it would take was a patch installed one day too late, or years of historical passwords saved in a freshly compromised hash, for my life's work to be lost—no matter how diligent I thought I was being.
 
@@ -64,3 +64,5 @@ In a future post, I will list the countless benefits of using Linux over Windows
 The transition was not as difficult as I had feared, and there are several Linux distributions tailor-made for users switching directly from Windows to help ease the growing pains of the learning curve.
 
 I hope you make the switch as well and free yourself from the confines of fear. 
+
+[^1]: Truly, I understand that the common denominator with nearly every computer mishap, issue, virus, etc., is myself. 
