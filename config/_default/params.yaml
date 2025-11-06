@@ -149,7 +149,7 @@ hugopress:
           cacheable: true
         # see layouts/partials/hugopress/modules/hb-custom/hooks/hb-blog-sidebar.html.
         #hb-blog-sidebar:
-          cacheable: true
+
           weight: 4
     # change the order of sidebar modules.
     hb-blog-sidebar-taxonomies:

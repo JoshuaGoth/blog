@@ -1,0 +1,775 @@
+<div class="golden-sun-editor-container">
+  <style>
+    .golden-sun-editor-container {
+      --primary-color: #8B4513;
+      --secondary-color: #DAA520;
+      --background-color: #F5F5DC;
+      --card-color: #FFF8DC;
+      --text-color: #333;
+      --border-color: #A0522D;
+    }
+
+    .golden-sun-editor-container * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .golden-sun-editor-container body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .golden-sun-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .golden-sun-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .golden-sun-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .golden-sun-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+    }
+
+    .golden-sun-file-section {
+      background-color: var(--card-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--border-color);
+    }
+
+    .golden-sun-editor-section {
+      background-color: var(--card-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--border-color);
+    }
+
+    .golden-sun-section-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 5px;
+    }
+
+    .golden-sun-file-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .golden-sun-file-input {
+      padding: 10px;
+      border: 2px dashed var(--border-color);
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .golden-sun-file-input:hover {
+      background-color: rgba(218, 165, 32, 0.1);
+    }
+
+    .golden-sun-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .golden-sun-button:hover {
+      background-color: #6B3410;
+    }
+
+    .golden-sun-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .golden-sun-save-info {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: rgba(139, 69, 19, 0.1);
+      border-radius: 5px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .golden-sun-editor-tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .golden-sun-tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-color);
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .golden-sun-tab.active {
+      border-bottom: 3px solid var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    .golden-sun-tab-content {
+      display: none;
+    }
+
+    .golden-sun-tab-content.active {
+      display: block;
+    }
+
+    .golden-sun-form-group {
+      margin-bottom: 15px;
+    }
+
+    .golden-sun-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .golden-sun-input, .golden-sun-select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    .golden-sun-character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .golden-sun-character-card {
+      background-color: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .golden-sun-character-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+      text-align: center;
+    }
+
+    .golden-sun-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .golden-sun-djinn-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .golden-sun-djinn-item {
+      text-align: center;
+      padding: 5px;
+      background-color: rgba(218, 165, 32, 0.2);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .golden-sun-inventory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .golden-sun-inventory-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+    }
+
+    .golden-sun-item-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--secondary-color);
+      border-radius: 50%;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    .golden-sun-status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .golden-sun-status-good {
+      background-color: #4CAF50;
+    }
+
+    .golden-sun-status-warning {
+      background-color: #FFC107;
+    }
+
+    .golden-sun-status-error {
+      background-color: #F44336;
+    }
+
+    .golden-sun-footer {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .golden-sun-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <header class="golden-sun-header">
+    <h1>Golden Sun Save File Editor</h1>
+    <p class="golden-sun-subtitle">Edit your Game Boy Advance Golden Sun save files</p>
+  </header>
+
+  <div class="golden-sun-container">
+    <section class="golden-sun-file-section">
+      <h2 class="golden-sun-section-title">File Operations</h2>
+      <div class="golden-sun-file-controls">
+        <div class="golden-sun-file-input" id="goldenSunFileDropArea">
+          <p>Drag & drop your save file here or click to browse</p>
+          <input type="file" id="goldenSunFileInput" accept=".sav,.gba" style="display: none;">
+        </div>
+        <button class="golden-sun-button" id="goldenSunDownloadBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 10.5L4 6.5H7V1H9V6.5H12L8 10.5Z"/>
+            <path d="M2 12.5V14H14V12.5H2Z"/>
+          </svg>
+          Download Modified Save
+        </button>
+      </div>
+
+      <div class="golden-sun-save-info" id="goldenSunSaveInfo" style="display: none;">
+        <h3>Save File Information</h3>
+        <p><strong>Game:</strong> <span id="goldenSunGameName">Golden Sun</span></p>
+        <p><strong>Characters:</strong> <span id="goldenSunCharCount">4</span></p>
+        <p><strong>Play Time:</strong> <span id="goldenSunPlayTime">15:30</span></p>
+        <p><strong>Location:</strong> <span id="goldenSunLocation">Vale</span></p>
+      </div>
+    </section>
+
+    <section class="golden-sun-editor-section">
+      <h2 class="golden-sun-section-title">Save File Editor</h2>
+
+      <div class="golden-sun-editor-tabs">
+        <button class="golden-sun-tab active" data-tab="goldenSunCharacters">Characters</button>
+        <button class="golden-sun-tab" data-tab="goldenSunInventory">Inventory</button>
+        <button class="golden-sun-tab" data-tab="goldenSunDjinn">Djinn</button>
+        <button class="golden-sun-tab" data-tab="goldenSunProgress">Game Progress</button>
+        <button class="golden-sun-tab" data-tab="goldenSunMisc">Miscellaneous</button>
+      </div>
+
+      <div id="goldenSunCharacters" class="golden-sun-tab-content active">
+        <div class="golden-sun-character-grid">
+          <!-- Character 1 -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Isaac</div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar1Level">Level</label>
+              <input class="golden-sun-input" type="number" id="goldenSunChar1Level" min="1" max="99" value="25">
+            </div>
+            <div class="golden-sun-stats-grid">
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar1Hp">HP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar1Hp" min="1" max="999" value="250">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar1Pp">PP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar1Pp" min="1" max="999" value="80">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar1Attack">Attack</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar1Attack" min="1" max="999" value="120">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar1Defense">Defense</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar1Defense" min="1" max="999" value="85">
+              </div>
+            </div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar1Class">Class</label>
+              <select class="golden-sun-select" id="goldenSunChar1Class">
+                <option>Guardian</option>
+                <option>Warrior</option>
+                <option>Swordsman</option>
+                <option>Knight</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Character 2 -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Garet</div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar2Level">Level</label>
+              <input class="golden-sun-input" type="number" id="goldenSunChar2Level" min="1" max="99" value="24">
+            </div>
+            <div class="golden-sun-stats-grid">
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar2Hp">HP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar2Hp" min="1" max="999" value="280">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar2Pp">PP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar2Pp" min="1" max="999" value="65">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar2Attack">Attack</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar2Attack" min="1" max="999" value="135">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar2Defense">Defense</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar2Defense" min="1" max="999" value="90">
+              </div>
+            </div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar2Class">Class</label>
+              <select class="golden-sun-select" id="goldenSunChar2Class">
+                <option>Guardian</option>
+                <option>Warrior</option>
+                <option>Swordsman</option>
+                <option>Knight</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Character 3 -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Ivan</div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar3Level">Level</label>
+              <input class="golden-sun-input" type="number" id="goldenSunChar3Level" min="1" max="99" value="23">
+            </div>
+            <div class="golden-sun-stats-grid">
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar3Hp">HP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar3Hp" min="1" max="999" value="180">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar3Pp">PP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar3Pp" min="1" max="999" value="120">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar3Attack">Attack</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar3Attack" min="1" max="999" value="85">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar3Defense">Defense</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar3Defense" min="1" max="999" value="70">
+              </div>
+            </div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar3Class">Class</label>
+              <select class="golden-sun-select" id="goldenSunChar3Class">
+                <option>Guardian</option>
+                <option>Warrior</option>
+                <option>Swordsman</option>
+                <option>Knight</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Character 4 -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Mia</div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar4Level">Level</label>
+              <input class="golden-sun-input" type="number" id="goldenSunChar4Level" min="1" max="99" value="22">
+            </div>
+            <div class="golden-sun-stats-grid">
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar4Hp">HP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar4Hp" min="1" max="999" value="200">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar4Pp">PP</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar4Pp" min="1" max="999" value="150">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar4Attack">Attack</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar4Attack" min="1" max="999" value="75">
+              </div>
+              <div class="golden-sun-form-group">
+                <label class="golden-sun-label" for="goldenSunChar4Defense">Defense</label>
+                <input class="golden-sun-input" type="number" id="goldenSunChar4Defense" min="1" max="999" value="65">
+              </div>
+            </div>
+            <div class="golden-sun-form-group">
+              <label class="golden-sun-label" for="goldenSunChar4Class">Class</label>
+              <select class="golden-sun-select" id="goldenSunChar4Class">
+                <option>Guardian</option>
+                <option>Warrior</option>
+                <option>Swordsman</option>
+                <option>Knight</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="goldenSunInventory" class="golden-sun-tab-content">
+        <div class="golden-sun-form-group">
+          <label class="golden-sun-label" for="goldenSunCoins">Coins</label>
+          <input class="golden-sun-input" type="number" id="goldenSunCoins" min="0" max="999999" value="5000">
+        </div>
+
+        <h3>Items</h3>
+        <div class="golden-sun-inventory-grid">
+          <!-- Sample items -->
+          <div class="golden-sun-inventory-item">
+            <div class="golden-sun-item-icon">S</div>
+            <span>Short Sword</span>
+            <input class="golden-sun-input" type="number" min="0" max="99" value="1">
+          </div>
+          <div class="golden-sun-inventory-item">
+            <div class="golden-sun-item-icon">P</div>
+            <span>Potion</span>
+            <input class="golden-sun-input" type="number" min="0" max="99" value="5">
+          </div>
+          <div class="golden-sun-inventory-item">
+            <div class="golden-sun-item-icon">H</div>
+            <span>Herb</span>
+            <input class="golden-sun-input" type="number" min="0" max="99" value="3">
+          </div>
+          <div class="golden-sun-inventory-item">
+            <div class="golden-sun-item-icon">A</div>
+            <span>Antidote</span>
+            <input class="golden-sun-input" type="number" min="0" max="99" value="2">
+          </div>
+          <div class="golden-sun-inventory-item">
+            <div class="golden-sun-item-icon">B</div>
+            <span>Broad Sword</span>
+            <input class="golden-sun-input" type="number" min="0" max="99" value="1">
+          </div>
+          <div class="golden-sun-inventory-item">
+            <div class="golden-sun-item-icon">L</div>
+            <span>Leather Shield</span>
+            <input class="golden-sun-input" type="number" min="0" max="99" value="1">
+          </div>
+        </div>
+      </div>
+
+      <div id="goldenSunDjinn" class="golden-sun-tab-content">
+        <div class="golden-sun-character-grid">
+          <!-- Isaac's Djinn -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Isaac's Djinn</div>
+            <div class="golden-sun-djinn-grid">
+              <div class="golden-sun-djinn-item">Flint</div>
+              <div class="golden-sun-djinn-item">Granite</div>
+              <div class="golden-sun-djinn-item">Quartz</div>
+              <div class="golden-sun-djinn-item">Vine</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+            </div>
+          </div>
+
+          <!-- Garet's Djinn -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Garet's Djinn</div>
+            <div class="golden-sun-djinn-grid">
+              <div class="golden-sun-djinn-item">Forge</div>
+              <div class="golden-sun-djinn-item">Fever</div>
+              <div class="golden-sun-djinn-item">Corona</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+            </div>
+          </div>
+
+          <!-- Ivan's Djinn -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Ivan's Djinn</div>
+            <div class="golden-sun-djinn-grid">
+              <div class="golden-sun-djinn-item">Gust</div>
+              <div class="golden-sun-djinn-item">Kite</div>
+              <div class="golden-sun-djinn-item">Squall</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+            </div>
+          </div>
+
+          <!-- Mia's Djinn -->
+          <div class="golden-sun-character-card">
+            <div class="golden-sun-character-name">Mia's Djinn</div>
+            <div class="golden-sun-djinn-grid">
+              <div class="golden-sun-djinn-item">Fizz</div>
+              <div class="golden-sun-djinn-item">Sleet</div>
+              <div class="golden-sun-djinn-item">Mist</div>
+              <div class="golden-sun-djinn-item">Spritz</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+              <div class="golden-sun-djinn-item">-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="goldenSunProgress" class="golden-sun-tab-content">
+        <div class="golden-sun-form-group">
+          <label class="golden-sun-label" for="goldenSunStoryProgress">Story Progress</label>
+          <select class="golden-sun-select" id="goldenSunStoryProgress">
+            <option>Beginning (Vale)</option>
+            <option>After Sol Sanctum</option>
+            <option>Bilibin</option>
+            <option>Kolima Forest</option>
+            <option>Altmiller Cave</option>
+            <option>Lamakan Desert</option>
+            <option>Kalay</option>
+            <option>Lunpa</option>
+            <option>Suha</option>
+            <option>Xian</option>
+            <option>Mt. Aleph</option>
+          </select>
+        </div>
+
+        <div class="golden-sun-form-group">
+          <label class="golden-sun-label" for="goldenSunPlayTime">Play Time</label>
+          <input class="golden-sun-input" type="text" id="goldenSunPlayTime" value="15:30">
+        </div>
+
+        <div class="golden-sun-form-group">
+          <label class="golden-sun-label" for="goldenSunCurrentLocation">Current Location</label>
+          <input class="golden-sun-input" type="text" id="goldenSunCurrentLocation" value="Vale">
+        </div>
+
+        <h3>Key Items</h3>
+        <div class="golden-sun-form-group">
+          <label>
+            <input type="checkbox" checked> Cloak Ball
+          </label>
+          <label>
+            <input type="checkbox" checked> Shaman Rod
+          </label>
+          <label>
+            <input type="checkbox"> Tomegathericon
+          </label>
+          <label>
+            <input type="checkbox"> Orb of Force
+          </label>
+        </div>
+      </div>
+
+      <div id="goldenSunMisc" class="golden-sun-tab-content">
+        <div class="golden-sun-form-group">
+          <label class="golden-sun-label" for="goldenSunDifficulty">Difficulty</label>
+          <select class="golden-sun-select" id="goldenSunDifficulty">
+            <option>Normal</option>
+            <option>Hard</option>
+            <option>Easy</option>
+          </select>
+        </div>
+
+        <div class="golden-sun-form-group">
+          <label class="golden-sun-label" for="goldenSunEncounterRate">Encounter Rate</label>
+          <select class="golden-sun-select" id="goldenSunEncounterRate">
+            <option>Normal</option>
+            <option>Increased</option>
+            <option>No Encounters</option>
+          </select>
+        </div>
+
+        <div class="golden-sun-form-group">
+          <label>
+            <input type="checkbox" id="goldenSunAllPsynergy"> Unlock All Psynergy
+          </label>
+        </div>
+
+        <div class="golden-sun-form-group">
+          <label>
+            <input type="checkbox" id="goldenSunMaxStats"> Max Stats on Level Up
+          </label>
+        </div>
+
+        <div class="golden-sun-form-group">
+          <label>
+            <input type="checkbox" id="goldenSunAllDjinn"> All Djinn Available
+          </label>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="golden-sun-footer">
+    <p>Golden Sun Save File Editor - This is a fan-made tool for educational purposes.</p>
+    <p>Golden Sun is a registered trademark of Nintendo/Camelot.</p>
+  </footer>
+
+  <script>
+    // Tab functionality
+    document.querySelectorAll('.golden-sun-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.golden-sun-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.golden-sun-tab-content').forEach(c => c.classList.remove('active'));
+
+        // Add active class to clicked tab
+        tab.classList.add('active');
+
+        // Show corresponding content
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // File upload functionality
+    const goldenSunFileInput = document.getElementById('goldenSunFileInput');
+    const goldenSunFileDropArea = document.getElementById('goldenSunFileDropArea');
+    const goldenSunDownloadBtn = document.getElementById('goldenSunDownloadBtn');
+    const goldenSunSaveInfo = document.getElementById('goldenSunSaveInfo');
+
+    goldenSunFileDropArea.addEventListener('click', () => {
+      goldenSunFileInput.click();
+    });
+
+    goldenSunFileDropArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      goldenSunFileDropArea.style.backgroundColor = 'rgba(218, 165, 32, 0.2)';
+    });
+
+    goldenSunFileDropArea.addEventListener('dragleave', () => {
+      goldenSunFileDropArea.style.backgroundColor = '';
+    });
+
+    goldenSunFileDropArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      goldenSunFileDropArea.style.backgroundColor = '';
+
+      if (e.dataTransfer.files.length) {
+        handleGoldenSunFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    goldenSunFileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) {
+        handleGoldenSunFile(e.target.files[0]);
+      }
+    });
+
+    function handleGoldenSunFile(file) {
+      // In a real implementation, this would parse the save file
+      // For this demo, we'll just simulate loading a file
+      console.log('Loading file:', file.name);
+
+      // Show save info
+      goldenSunSaveInfo.style.display = 'block';
+
+      // Enable download button
+      goldenSunDownloadBtn.disabled = false;
+
+      // Update save info with "loaded" data
+      document.getElementById('goldenSunGameName').textContent = 'Golden Sun';
+      document.getElementById('goldenSunCharCount').textContent = '4';
+      document.getElementById('goldenSunPlayTime').textContent = '15:30';
+      document.getElementById('goldenSunLocation').textContent = 'Vale';
+
+      // Show success message
+      alert('Save file loaded successfully! You can now edit the values.');
+    }
+
+    // Download functionality
+    goldenSunDownloadBtn.addEventListener('click', () => {
+      // In a real implementation, this would generate a modified save file
+      // For this demo, we'll just create a dummy file
+
+      const modifiedData = "This would be the modified save file data in a real implementation";
+      const blob = new Blob([modifiedData], { type: 'application/octet-stream' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'golden_sun_modified.sav';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      alert('Modified save file downloaded!');
+    });
+
+    // Form validation for numeric inputs
+    document.querySelectorAll('.golden-sun-input[type="number"]').forEach(input => {
+      input.addEventListener('change', () => {
+        const min = parseInt(input.getAttribute('min'));
+        const max = parseInt(input.getAttribute('max'));
+        const value = parseInt(input.value);
+
+        if (value < min) input.value = min;
+        if (value > max) input.value = max;
+      });
+    });
+  </script>
+</div>
